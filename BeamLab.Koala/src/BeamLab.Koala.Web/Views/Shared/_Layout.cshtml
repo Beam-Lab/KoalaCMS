@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Koala CMS</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+
+    <div class="container" style="margin-bottom:10px;">
+        <div class="title">
+            <img src="~/images/KoalaCMSType.png" height="140">
+            <h4>The light CMS written in ASP.NET Core</h4>
+        </div>
+        <nav>
+            <ul class="nav nav-justified">
+                <li class=""><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Politica</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Economia</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Sport</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Tecnologia</a></li>
+                <li><a asp-controller="Home" asp-action="Index">Salute</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Koala CMS - 2017</p>
+            @await Html.PartialAsync("_LoginPartial")
+        </div>
+    </footer>
+
+    <environment names="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.12.3.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
