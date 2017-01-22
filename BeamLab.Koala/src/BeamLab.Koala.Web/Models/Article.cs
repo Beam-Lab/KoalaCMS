@@ -15,10 +15,18 @@ namespace BeamLab.Koala.Web.Models
 
         public string SubTitle { get; set; }
 
+        public string Image { get; set; }
+
         public string Header { get; set; }
 
         public string Body { get; set; }
 
         public bool Draft { get; set; }
+
+        public bool Published { get; set; }
+
+        public bool Featured { get; set; }
+
+        public bool HomePage { get; set; }
     }
 }

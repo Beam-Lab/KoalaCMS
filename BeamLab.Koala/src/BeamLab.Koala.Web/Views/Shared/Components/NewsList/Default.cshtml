@@ -1,0 +1,13 @@
+﻿@model IEnumerable<Article>
+
+@foreach (var item in Model)
+{
+    <div class="media">
+        <div class="media-left">
+            <a href="#"> <img class="media-object" style="width: 64px; height: 64px;" alt="64x64" src="@item.Image" data-src="holder.js/64x64" data-holder-rendered="true"> </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">@item.Title</h4> @item.SubTitle
+        </div>
+    </div>
+}

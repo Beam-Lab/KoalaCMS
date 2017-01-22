@@ -1,0 +1,22 @@
+﻿@model List<CarouselItem>
+
+<div id="myCarousel" class="carousel slide">
+    <div class="carousel-inner">
+
+        @for (int i = 0; i < Model.Count(); i++)
+        {
+            <div class="item @(i == 0 ? "active" : "")">
+                <img src="@Model[i].Image">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h2>@Model[i].Title</h2>
+                        <p>@Model[i].Body </p>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev"> <span class="icon-prev"></span> </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next"> <span class="icon-next"></span> </a>
+</div>

@@ -80,16 +80,17 @@ namespace BeamLab.Koala.Web
             //                .Concat(responseCompressionSettings.MimeTypes);
             //        });
 
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlite(configuration.GetConnectionString("SqliteConnection")));      
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddMvc();
-
-
 
             services.AddApplicationServices();
         }
