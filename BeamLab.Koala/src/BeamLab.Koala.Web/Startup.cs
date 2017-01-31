@@ -48,6 +48,12 @@ namespace BeamLab.Koala.Web
                 // variable named AppSettings:SiteTitle. See http://docs.asp.net/en/latest/security/app-secrets.html
                 .AddEnvironmentVariables()
                 .Build();
+
+            //var launchConfiguration = new ConfigurationBuilder()
+            //        .SetBasePath(env.ContentRootPath)
+            //        .AddJsonFile(@"Properties\launchSettings.json")
+            //        .Build();
+            //this .sslPort = launchConfiguration.GetValue<int>("iisSettings:iisExpress:sslPort");
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -80,17 +86,16 @@ namespace BeamLab.Koala.Web
             //                .Concat(responseCompressionSettings.MimeTypes);
             //        });
 
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(configuration.GetConnectionString("SqliteConnection")));      
+                options.UseSqlite(configuration.GetConnectionString("SqliteConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddMvc();
+            services.AddMvc(c =>
+                c.Conventions.Add(new ApiExplorerGroupPerVersionConvention())
+            );
 
             services.AddApplicationServices();
         }
@@ -125,6 +130,14 @@ namespace BeamLab.Koala.Web
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
+            app.UseSwagger();
+
+            app.UseSwaggerUi(c =>
+            {
+                c.RoutePrefix = "swagger";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Koala CMS API V1");
             });
         }
     }

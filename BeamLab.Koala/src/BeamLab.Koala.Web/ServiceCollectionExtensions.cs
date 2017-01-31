@@ -1,7 +1,11 @@
-﻿using BeamLab.Koala.Web.Services;
+﻿using BeamLab.Koala.Web.Repository;
+using BeamLab.Koala.Web.Services;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.PlatformAbstractions;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -73,6 +77,24 @@ namespace BeamLab.Koala.Web
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
+            services.AddTransient<IRepository, KoalaMockRepository>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Version = "v1",
+                    Title = "Koala CMS API",
+                    Description = "The Koala CMS Web API for your custom services.",
+                    TermsOfService = "None",
+                    Contact = new Contact { Name = "Emanuele B.", Email = "emanuele@beamlab.cloud", Url = "http://twitter.com/kasuken" },
+                    License = new License { Name = "Use under GPL", Url = "http://github.com/beamlab/Koala.CMS" }
+                });
+
+                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
+                var xmlPath = Path.Combine(basePath, "BeamLab.Koala.Web.xml");
+                c.IncludeXmlComments(xmlPath);
+            });
 
             return services;
         }
