@@ -1,7 +1,10 @@
 ﻿@{
     ViewData["Title"] = "About";
 }
+@using Microsoft.Extensions.Localization;
+@inject IStringLocalizer<BeamLab.Koala.Web.Controllers.HomeController> CLocalizer
+
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>@CLocalizer["CTitle"]</p>
