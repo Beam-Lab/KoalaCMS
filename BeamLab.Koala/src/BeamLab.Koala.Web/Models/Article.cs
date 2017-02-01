@@ -9,6 +9,8 @@ namespace BeamLab.Koala.Web.Models
     {
         public int ID { get; set; }
 
+        public string Category { get; set; }
+
         public DateTime PublishDate { get; set; }
 
         public string Title { get; set; }

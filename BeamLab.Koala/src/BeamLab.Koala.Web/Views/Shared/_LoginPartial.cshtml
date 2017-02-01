@@ -8,6 +8,15 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
+            @if (await UserManager.IsInRoleAsync(await UserManager.GetUserAsync(User), "Administrator"))
+            {
+
+                <li>
+                    <a asp-area="" asp-controller="Admin" asp-action="Index" title="Manage">Admin</a>
+                </li>
+
+            }
+
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li>
@@ -20,7 +29,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Account" asp-action="Register" asp-protocol="https">Register</a></li>
-        <li><a asp-area="" asp-controller="Account" asp-action="Login" asp-protocol="https">Log in</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Register" asp-protocol="http">Register</a></li>
+        <li><a asp-area="" asp-controller="Account" asp-action="Login" asp-protocol="http">Log in</a></li>
     </ul>
 }

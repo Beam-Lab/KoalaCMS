@@ -1,0 +1,95 @@
+@model BeamLab.Koala.Web.Models.Article
+
+@{
+    ViewData["Title"] = "EditNews";
+}
+
+<h2>EditNews</h2>
+
+<form asp-action="EditNews">
+    <div class="form-horizontal">
+        <h4>Article</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ID" />
+        <div class="form-group">
+            <label asp-for="Title" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="SubTitle" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="SubTitle" class="form-control" />
+                <span asp-validation-for="SubTitle" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Header" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Header" class="form-control" />
+                <span asp-validation-for="Header" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Body" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Body" class="form-control" />
+                <span asp-validation-for="Body" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Published" />
+                    <label asp-for="Published"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PublishDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="PublishDate" class="form-control" />
+                <span asp-validation-for="PublishDate" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Featured" />
+                    <label asp-for="Featured"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="HomePage" />
+                    <label asp-for="HomePage"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save Article" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

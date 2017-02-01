@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BeamLab.Koala.Web.Repository;
+using System.Text;
 
 namespace BeamLab.Koala.Web.Controllers
 {
@@ -36,6 +37,20 @@ namespace BeamLab.Koala.Web.Controllers
             return View();
         }
 
+        [Route("terms", Name = "Terms")]
+        public IActionResult Terms()
+        {
+
+            return View();
+        }
+
+        [Route("privacy", Name = "Privacy")]
+        public IActionResult Privacy()
+        {
+
+            return View();
+        }
+
         [Route("search", Name = "Search")]
         public IActionResult Search(string query)
         {
@@ -48,6 +63,16 @@ namespace BeamLab.Koala.Web.Controllers
                 query));
         }
 
+        //[NoTrailingSlash]
+        //[ResponseCache(CacheProfileName = "OpenSearchXml")]
+        //[Route("opensearch.xml", Name = "OpenSearch")]
+        //public IActionResult OpenSearchXml()
+        //{
+        //    string content = this.openSearchService.GetOpenSearchXml();
+        //    return this.Content(content, ContentType.Xml, Encoding.UTF8);
+        //}
+
+        [Route("newsdetail/{id}", Name = "NewsDetail")]
         public IActionResult NewsDetail(string id)
         {
 

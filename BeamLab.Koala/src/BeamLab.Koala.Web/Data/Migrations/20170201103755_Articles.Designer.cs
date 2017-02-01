@@ -8,9 +8,10 @@ using BeamLab.Koala.Web.Data;
 namespace BeamLab.Koala.Web.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20170201103755_Articles")]
+    partial class Articles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752");
@@ -72,8 +73,6 @@ namespace BeamLab.Koala.Web.Data.Migrations
 
                     b.Property<string>("Body");
 
-                    b.Property<string>("Category");
-
                     b.Property<bool>("Draft");
 
                     b.Property<bool>("Featured");
@@ -95,22 +94,6 @@ namespace BeamLab.Koala.Web.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Articles");
-                });
-
-            modelBuilder.Entity("BeamLab.Koala.Web.Models.CarouselItem", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Body");
-
-                    b.Property<string>("Image");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Slides");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole", b =>
