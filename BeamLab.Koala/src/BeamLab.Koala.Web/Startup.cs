@@ -100,29 +100,8 @@ namespace BeamLab.Koala.Web
                 c.Conventions.Add(new ApiExplorerGroupPerVersionConvention())
             )
             .AddViewLocalization();
-            services.AddLocalization(options => options.ResourcesPath = "Resources");
-            services.Configure<RequestLocalizationOptions>(
-                opts =>
-                {
-                    var supportedCultures = new[]
-                    {
-                        new CultureInfo("it-IT"),
-                        new CultureInfo("it"),
-                        new CultureInfo("en-GB"),
-                        new CultureInfo("en-US"),
-                        new CultureInfo("en"),
-                        new CultureInfo("fr-FR"),
-                        new CultureInfo("fr"),
-                    };
-
-                    opts.DefaultRequestCulture = new RequestCulture("it-IT");
-                    // Formatting numbers, dates, etc.
-                    opts.SupportedCultures = supportedCultures;
-                    // UI strings that we have localized.
-                    opts.SupportedUICultures = supportedCultures;
-                });
+  
             services.AddApplicationServices();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

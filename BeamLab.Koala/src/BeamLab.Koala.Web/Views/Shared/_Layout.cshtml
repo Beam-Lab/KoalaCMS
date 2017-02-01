@@ -41,14 +41,7 @@
             <h4>@Localizer["KoalaDescription"]</h4>
         </div>
         <nav>
-            <ul class="nav nav-justified">
-                <li class=""><a asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-controller="Home" asp-action="Index">Politica</a></li>
-                <li><a asp-controller="Home" asp-action="Index">Economia</a></li>
-                <li><a asp-controller="Home" asp-action="Index">Sport</a></li>
-                <li><a asp-controller="Home" asp-action="Index">Tecnologia</a></li>
-                <li><a asp-controller="Home" asp-action="Index">Salute</a></li>
-            </ul>
+            @await Component.InvokeAsync("NavBar")
         </nav>
     </div>
 
@@ -75,7 +68,7 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a asp-controller="Home" asp-action="Terms">Terms of Service</a></li>
+                        <li><a asp-controller="Home" asp-action="Terms">@Localizer["Terms"]</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

@@ -30,6 +30,7 @@ namespace BeamLab.Koala.Web.Controllers
         public IActionResult EditNews(int? id)
         {
             var article = new Article();
+            article.PublishDate = DateTime.Now.Date;
 
             if (id.HasValue)
             {

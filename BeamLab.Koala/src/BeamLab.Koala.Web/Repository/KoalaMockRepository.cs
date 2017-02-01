@@ -52,5 +52,15 @@ namespace BeamLab.Koala.Web.Repository
         {
             throw new NotImplementedException();
         }
+
+        public List<string> GetNewsCategories()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Category> IRepository.GetNewsCategories()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

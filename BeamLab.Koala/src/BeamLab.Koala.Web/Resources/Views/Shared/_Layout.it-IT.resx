@@ -120,4 +120,7 @@
   <data name="KoalaDescription" xml:space="preserve">
     <value>Il semplice CMS scritto in ASP.NET Core</value>
   </data>
+  <data name="Terms" xml:space="preserve">
+    <value>Termini di servizio</value>
+  </data>
 </root>

@@ -8,6 +8,7 @@ namespace BeamLab.Koala.Web.Repository
 {
     public interface IRepository
     {
+        List<Category> GetNewsCategories();
 
         List<Article> GetTopArticles();
 

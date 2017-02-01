@@ -16,6 +16,19 @@ namespace BeamLab.Koala.Web.Repository
             _dbContext = dbContext;
         }
 
+        public List<Category> GetNewsCategories()
+        {
+            var result = new List<Category>();
+            var categories = _dbContext.Articles.Select(a => a.Category).Distinct().ToList();
+
+            foreach(string item in categories)
+            {
+                result.Add(new Category() { Name = item });
+            }
+
+            return result;
+        }
+
         public List<Article> GetTopArticles()
         {
             return _dbContext.Articles.OrderByDescending(c => c.Visits).ToList();
