@@ -25,7 +25,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-
+                @await Html.PartialAsync("_SelectLanguagePartial")
             </div>
         </div>
         <div class="row">
@@ -38,7 +38,7 @@
     <div class="container" style="margin-bottom:10px;">
         <div class="title">
             <img src="~/images/KoalaCMSType.png" height="140">
-            <h4>The light CMS written in ASP.NET Core</h4>
+            <h4>@Localizer["KoalaDescription"]</h4>
         </div>
         <nav>
             <ul class="nav nav-justified">
