@@ -6,46 +6,43 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using BeamLab.Koala.Web.Models;
 using BeamLab.Koala.Web.Data;
+using BeamLab.Koala.Web.Repository;
 
 namespace BeamLab.Koala.Web.Controllers
 {
     [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
-        ApplicationDbContext _dbContext;
+        IRepository _repository;
 
-        public AdminController(ApplicationDbContext dbContext)
+        public AdminController(IRepository repository)
         {
-            _dbContext = dbContext;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            var articles = _dbContext.Articles.ToList();
+            var articles = _repository.GetAllArticles();
 
             return View(articles);
         }
 
-        public IActionResult EditNews()
+        public IActionResult EditNews(int? id)
         {
-            return View();
+            var article = new Article();
+
+            if (id.HasValue)
+            {
+                article = _repository.GetArticle(id.Value);
+            }
+
+            return View(article);
         }
 
         [HttpPost]
         public IActionResult EditNews(Article model)
         {
-            var article = new Article();
-
-            if (model.ID > 0)
-            {
-
-            }
-
-                article =  _dbContext.Articles.Where(c => c.ID == model.ID).FirstOrDefault();
-
-            
-
-            _dbContext.SaveChanges();
+            _repository.SaveArticle(model);
 
             return RedirectToAction("Index");
         }

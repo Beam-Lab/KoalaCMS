@@ -36,7 +36,8 @@
         <div class="form-group">
             <label asp-for="Body" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="Body" class="form-control" />
+                <input asp-for="Body" class="form-control" style="display:none" />
+                <trix-editor input="Body" style="min-height:320px;"></trix-editor>
                 <span asp-validation-for="Body" class="text-danger" />
             </div>
         </div>

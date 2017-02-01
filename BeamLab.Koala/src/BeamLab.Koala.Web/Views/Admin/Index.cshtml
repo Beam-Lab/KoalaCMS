@@ -25,9 +25,6 @@
                 @Html.DisplayNameFor(model => model.SubTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Body)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Featured)
             </th>
             <th>
@@ -57,9 +54,6 @@
                     @Html.DisplayFor(modelItem => item.SubTitle)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Body)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.Featured)
                 </td>
                 <td>
@@ -69,7 +63,7 @@
                     @Html.DisplayFor(modelItem => item.Published)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="EditNews" asp-route-id="@item.ID">Edit</a> |
                     <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
                 </td>
             </tr>

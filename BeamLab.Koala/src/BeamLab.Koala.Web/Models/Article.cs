@@ -15,6 +15,8 @@ namespace BeamLab.Koala.Web.Models
 
         public string Title { get; set; }
 
+        public string CuratedTitle { get; set; }
+
         public string SubTitle { get; set; }
 
         public string Image { get; set; }
@@ -30,5 +32,7 @@ namespace BeamLab.Koala.Web.Models
         public bool Featured { get; set; }
 
         public bool HomePage { get; set; }
+
+        public int Visits { get; set; }
     }
 }

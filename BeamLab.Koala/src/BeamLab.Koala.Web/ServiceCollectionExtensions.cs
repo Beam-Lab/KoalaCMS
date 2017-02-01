@@ -77,7 +77,7 @@ namespace BeamLab.Koala.Web
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            services.AddTransient<IRepository, KoalaMockRepository>();
+            services.AddTransient<IRepository, KoalaRepository>();
 
             services.AddSwaggerGen(c =>
             {

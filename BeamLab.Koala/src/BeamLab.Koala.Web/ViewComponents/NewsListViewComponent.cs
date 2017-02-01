@@ -1,4 +1,5 @@
 ﻿using BeamLab.Koala.Web.Models;
+using BeamLab.Koala.Web.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace BeamLab.Koala.Web.ViewComponents
 {
     public class NewsListViewComponent : ViewComponent
     {
+        IRepository _repository;
+
+        public NewsListViewComponent(IRepository repository)
+        {
+            _repository = repository;
+        }
+
         public async Task<IViewComponentResult> InvokeAsync(int newsCount, string category)
         {
             var items = await GetItemsAsync(newsCount, category);
@@ -20,9 +28,17 @@ namespace BeamLab.Koala.Web.ViewComponents
         {
             var articles = new List<Article>();
 
-            for (int i = 0; i < newsCount; i++)
+            switch (category)
             {
-                articles.Add(new Article() { ID = i, Title = string.Format("Title {0} for category: {1}", i.ToString(), category), SubTitle = string.Format("Title {0} for category: {1}", i.ToString(), category), Image = "https://i.guim.co.uk/img/static/sys-images/Guardian/Pix/pictures/2015/5/22/1432299215355/baff131f-a335-44eb-ad66-03c52c5c2213-620x372.jpeg?w=700&q=85&auto=format&sharp=10&s=31a22f00a85840740c2a8af5604abfb0" });
+                case "featured":
+                    articles = _repository.GetFeaturedArticles();
+                    break;
+                case "top":
+                    articles = _repository.GetTopArticles();
+                    break;
+                case "latest":
+                    articles = _repository.GetLatestArticles();
+                    break;
             }
 
             return Task.Run(() => articles);

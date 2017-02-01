@@ -72,12 +72,13 @@ namespace BeamLab.Koala.Web.Controllers
         //    return this.Content(content, ContentType.Xml, Encoding.UTF8);
         //}
 
-        [Route("newsdetail/{id}", Name = "NewsDetail")]
-        public IActionResult NewsDetail(string id)
+        public IActionResult Article(string title)
         {
+            var article = _repository.GetArticleByTitle(title);
 
+            _repository.AddVisitToArticle(article.ID);
 
-            return View();
+            return View(article);
         }
 
         public IActionResult Error()

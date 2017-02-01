@@ -131,6 +131,11 @@ namespace BeamLab.Koala.Web
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "article",
+                    template: "n/{title}",
+                    defaults: new { controller = "Home", action = "Article" });
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
