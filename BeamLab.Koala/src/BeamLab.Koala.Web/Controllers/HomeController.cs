@@ -22,7 +22,9 @@ namespace BeamLab.Koala.Web.Controllers
         [Route("", Name = "Home")]
         public IActionResult Index()
         {
-            return View();
+            var articles = _repository.GetHomePageArticles();
+
+            return View(articles);
         }
 
         [Route("about", Name = "About")]
