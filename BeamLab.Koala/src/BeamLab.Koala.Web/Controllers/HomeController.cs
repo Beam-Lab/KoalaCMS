@@ -87,6 +87,11 @@ namespace BeamLab.Koala.Web.Controllers
 
             _repository.AddVisitToArticle(article.ID);
 
+            ViewData["CurrentUrl"] = Request.Scheme + "://" + Request.Host + Request.Path;
+            ViewData["Title"] = article.Title;
+            ViewData["Description"] = article.SubTitle;
+            ViewData["CurrentImage"] = article.Image;
+
             return View(article);
         }
 

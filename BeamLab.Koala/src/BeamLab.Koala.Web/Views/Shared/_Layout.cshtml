@@ -19,6 +19,12 @@
     <link rel="stylesheet" async type="text/css" href="~/lib/trix/dist/trix.css">
     <script type="text/javascript" src="~/lib/trix/dist/trix.js"></script>
 
+    <meta property="og:url" content="@ViewData["CurrentUrl"]" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@ViewData["Title"]" />
+    <meta property="og:description" content="@ViewData["Description"]" />
+    <meta property="og:image" content="@ViewData["CurrentImage"]" />
+
 </head>
 <body>
 
@@ -96,6 +102,17 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.8&appId=620375934836576";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
 
     @RenderSection("scripts", required: false)
 </body>

@@ -1,5 +1,9 @@
 ﻿@model BeamLab.Koala.Web.Models.Article
 
+@{
+    var currentUrl = Context.Request.Scheme + "://" + Context.Request.Host + Context.Request.Path;
+}
+
 <article class="container">
     <div class="row">
         <section class="col-md-12">
@@ -20,8 +24,19 @@
 
                 <div class="col-md-4">
                     <img src="@Model.Image" />
+
+                    <div class="fb-share-button center-block"
+                         data-href="@currentUrl"
+                         data-layout="button_count">
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 </article>
+
+<div class="row">
+    <div class="col-md-12">
+        @await Component.InvokeAsync("FacebookComments")
+    </div>
+</div>
