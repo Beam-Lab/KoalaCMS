@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.ResponseCompression;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using Microsoft.Net.Http.Headers;
 
 namespace BeamLab.Koala.Web
 {
@@ -77,17 +78,9 @@ namespace BeamLab.Koala.Web
 
             services.AddResponseCaching();
 
-            //services.AddResponseCompression(
-            //        options =>
-            //        {
-            //            options.EnableForHttps = true;
-            //            // Add additional MIME types (other than the built in defaults) to enable GZIP compression for.
-            //            var responseCompressionSettings = configuration.GetSection<ResponseCompressionSettings>(
-            //                nameof(ResponseCompressionSettings));
-            //            options.MimeTypes = ResponseCompressionDefaults
-            //                .MimeTypes
-            //                .Concat(responseCompressionSettings.MimeTypes);
-            //        });
+            /* Static file compression */
+            services.AddResponseCompression(
+                options => options.MimeTypes = ResponseCompressionMimeTypes.Defaults);
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(configuration.GetConnectionString("SqliteConnection")));
@@ -121,8 +114,6 @@ namespace BeamLab.Koala.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseStaticFiles();
-
             var options = app.ApplicationServices.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(options.Value);
 
@@ -130,21 +121,24 @@ namespace BeamLab.Koala.Web
 
             UsersRolesExtensions.AddUsersRoles(app.ApplicationServices).Wait();
 
-            // Add external authentication middleware below. To configure them please see http://go.microsoft.com/fwlink/?LinkID=532715
+            app.UseResponseCompression()
+                .UseStaticFiles(new StaticFileOptions
+                {
+                    OnPrepareResponse =
+                        _ => _.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=604800"
 
-            //app.UseResponseCompression()
+                })
+                .UseMvc(routes =>
+                {
+                    routes.MapRoute(
+                        name: "article",
+                        template: "n/{title}",
+                        defaults: new { controller = "Home", action = "Article" });
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "article",
-                    template: "n/{title}",
-                    defaults: new { controller = "Home", action = "Article" });
-
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+                    routes.MapRoute(
+                        name: "default",
+                        template: "{controller=Home}/{action=Index}/{id?}");
+                });
 
             app.UseSwagger();
 
