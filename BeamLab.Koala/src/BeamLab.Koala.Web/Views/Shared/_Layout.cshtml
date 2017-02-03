@@ -6,8 +6,8 @@
     <title>@ViewData["Title"] - @Application.Name</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" async href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" async href="~/css/site.css" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 
-    <link rel="stylesheet" type="text/css" href="~/lib/trix/dist/trix.css">
+    <link rel="stylesheet" async type="text/css" href="~/lib/trix/dist/trix.css">
     <script type="text/javascript" src="~/lib/trix/dist/trix.js"></script>
 
 </head>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-md-4">
                     <ul class="nav nav-pills nav-stacked">
-                        <li><a asp-controller="Home" asp-action="Privacy">Privacy</a></li>
+                        <li><a asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a></li>
                     </ul>
                 </div>
             </div>

@@ -1,13 +1,15 @@
 ﻿@model BeamLab.Koala.Web.Models.Article
 
-<div class="container">
+<article class="container">
     <div class="row">
-        <div class="col-md-12">
+        <section class="col-md-12">
 
             <div class="row">
                 <div class="col-md-12">
-                    <h1>@Model.Title</h1>
-                    <h3><i>@Model.SubTitle</i></h3>
+                    <header>
+                        <h1>@Model.Title</h1>
+                        <h3><i>@Model.SubTitle</i></h3>
+                    </header>
                 </div>
             </div>
 
@@ -20,6 +22,6 @@
                     <img src="@Model.Image" />
                 </div>
             </div>
-        </div>
+        </section>
     </div>
-</div>
+</article>

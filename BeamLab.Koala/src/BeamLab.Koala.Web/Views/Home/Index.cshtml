@@ -24,7 +24,7 @@
                                         @Model[i].Title
                                     </a>
                                 </h3> <span class="meta">
-                                    <span><i class="glyphicon glyphicon-time"></i> @Model[i].PublishDate.Date</span>
+                                    <time><i class="glyphicon glyphicon-time"></i> @Model[i].PublishDate</time>
                                 </span>
                             </div> <img src="@Model[i].Image" alt="@Model[i].Title" class="">
                         </div>
@@ -43,7 +43,7 @@
                                         @Model[i].Title
                                     </a>
                                 </h3> <span class="meta">
-                                    <span><i class="glyphicon glyphicon-time"></i> @Model[i].PublishDate.Date</span>
+                                    <time><i class="glyphicon glyphicon-time"></i> @Model[i].PublishDate</time>
                                 </span>
                             </div> <img src="@Model[i].Image" alt="@Model[i].Title" class="">
                         </div>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <aside class="col-sm-4">
             <div>
                 <ul class="nav nav-tabs" role="tablist">
                     <li role="presentation" class="active"><a href="#latest" aria-controls="latest" role="tab" data-toggle="tab">Latest</a></li>
@@ -70,6 +70,6 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </aside>
     </div>
 </div>

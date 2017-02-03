@@ -89,7 +89,7 @@ namespace BeamLab.Koala.Web.Repository
                     Category = "Category 1",
                     CuratedTitle = $"News-Title-{i}",
                     Image = $"http://lorempixel.com/400/{random.Next(200, 350)}/{categories[random.Next(0, categories.Length)]}/",
-                    PublishDate = DateTime.Now.Date.AddMonths(-i),
+                    PublishDate = RandomDate(),
                     SubTitle = $"News Subtitle {i}",
                     Body = LoremIpsum(10, 20, 20, 25, 3)
                 });
@@ -128,6 +128,14 @@ namespace BeamLab.Koala.Web.Repository
             }
 
             return result.ToString();
+        }
+
+        DateTime RandomDate()
+        {
+            var rand = new Random();
+            var start = new DateTime(2015, 1, 1, DateTime.Now.AddHours(rand.Next(1,10)).Hour, DateTime.Now.AddHours(rand.Next(1, 10)).Minute, DateTime.Now.AddHours(rand.Next(1, 10)).Second);
+            int range = (DateTime.Now - start).Days;
+            return start.AddDays(rand.Next(range));
         }
     }
 }
