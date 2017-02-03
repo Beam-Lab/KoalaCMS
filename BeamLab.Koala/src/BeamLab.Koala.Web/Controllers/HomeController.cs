@@ -7,21 +7,26 @@ using BeamLab.Koala.Web.Repository;
 using System.Text;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace BeamLab.Koala.Web.Controllers
 {
     public class HomeController : Controller
     {
         private IRepository _repository;
+        private ILogger _logger;
 
-        public HomeController(IRepository repository)
+        public HomeController(IRepository repository, ILogger<HomeController> logger)
         {
             _repository = repository;
+            _logger = logger;
         }
 
         [Route("", Name = "Home")]
         public IActionResult Index()
         {
+            _logger.LogInformation("Call Repository: GetAllArticles");
+
             var articles = _repository.GetHomePageArticles();
 
             return View(articles);

@@ -17,6 +17,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using Microsoft.Net.Http.Headers;
+using Serilog;
 
 namespace BeamLab.Koala.Web
 {
@@ -53,11 +54,11 @@ namespace BeamLab.Koala.Web
                 .AddEnvironmentVariables()
                 .Build();
 
-            //var launchConfiguration = new ConfigurationBuilder()
-            //        .SetBasePath(env.ContentRootPath)
-            //        .AddJsonFile(@"Properties\launchSettings.json")
-            //        .Build();
-            //this .sslPort = launchConfiguration.GetValue<int>("iisSettings:iisExpress:sslPort");
+                Log.Logger = new LoggerConfiguration()
+                    .MinimumLevel.Debug()
+                    .Enrich.FromLogContext()
+                    .WriteTo.Seq("http://localhost:5341")
+                    .CreateLogger();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -102,6 +103,8 @@ namespace BeamLab.Koala.Web
         {
             loggerFactory.AddConsole(configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            loggerFactory.AddSerilog();
 
             if (env.IsDevelopment())
             {

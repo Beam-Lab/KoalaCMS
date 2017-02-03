@@ -4,11 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using BeamLab.Koala.Web.Models;
 using System.Text;
+using Microsoft.Extensions.Logging;
 
 namespace BeamLab.Koala.Web.Repository
 {
     public class KoalaMockRepository : IRepository
     {
+        private ILogger _logger;
+
+        public KoalaMockRepository(ILogger<KoalaMockRepository> logger)
+        {
+            _logger = logger;
+        }
+
         public void AddVisitToArticle(int id)
         {
             return;
@@ -16,11 +24,15 @@ namespace BeamLab.Koala.Web.Repository
 
         public List<Article> GetAllArticles()
         {
+            _logger.LogInformation("Call Repository: GetAllArticles");
+
             return CreateRandomArticles(50);
         }
 
         public Article GetArticle(int id)
         {
+            _logger.LogInformation("Call Repository: GetArticle - Param Value: {id}");
+
             var article = CreateRandomArticles(1).FirstOrDefault();
             article.ID = id;
 
@@ -42,6 +54,8 @@ namespace BeamLab.Koala.Web.Repository
 
         public List<Article> GetHomePageArticles()
         {
+            _logger.LogInformation("Call Repository: GetHomePageArticles");
+
             return CreateRandomArticles(20);
         }
 
